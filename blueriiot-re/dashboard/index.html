@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pool Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<style>
+  :root { --bg:#f6f8fa; --card:#fff; --fg:#1f2328; --muted:#656d76; --line:#d0d7de; --ok:#1a7f37; --warn:#bf8700; --bad:#cf222e; --accent:#0969da; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d1117; --card:#161b22; --fg:#e6edf3; --muted:#8d96a0; --line:#30363d; --ok:#3fb950; --warn:#d29922; --bad:#f85149; --accent:#4493f8; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.45 system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  header { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:baseline; justify-content:space-between; }
+  h1 { font-size:20px; margin:0; }
+  .meta { color:var(--muted); font-size:13px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:16px 0; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; cursor:pointer; }
+  .card.sel { outline:2px solid var(--accent); }
+  .card .label { color:var(--muted); font-size:13px; }
+  .card .value { font-size:30px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .card .unit { font-size:15px; color:var(--muted); margin-left:4px; }
+  .card .range { font-size:12px; color:var(--muted); }
+  .ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px; }
+  button, input { font:inherit; color:var(--fg); background:var(--card); border:1px solid var(--line); border-radius:6px; padding:5px 10px; }
+  button.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; }
+  .chartbox { position:relative; height:360px; }
+  .status { color:var(--muted); font-size:13px; min-height:1.4em; margin:6px 0; }
+  .status.err { color:var(--bad); }
+  .badges span { display:inline-block; font-size:12px; border:1px solid var(--line); border-radius:999px; padding:1px 8px; margin-right:4px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1 id="title">Pool</h1>
+    <div class="meta"><span id="updated">Loading…</span> <span class="badges" id="badges"></span></div>
+  </header>
+  <div class="cards" id="cards"></div>
+  <div class="panel">
+    <div class="controls">
+      <span id="rangeBtns"></span>
+      <input type="date" id="from" aria-label="From"> – <input type="date" id="to" aria-label="To">
+      <button id="custom">Apply</button>
+      <button id="csv">Export CSV</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div class="chartbox"><canvas id="chart"></canvas></div>
+  </div>
+</main>
+<script>
+const METRICS = { temperature:{label:"Temperature",unit:"°C",dp:1}, ph:{label:"pH",unit:"",dp:2},
+                  orp:{label:"ORP (sanitation)",unit:"mV",dp:0}, conductivity:{label:"Conductivity",unit:"µS/cm",dp:0} };
+const RANGES = ["24h","7d","30d","90d","365d"];
+let metric = "temperature", query = "range=7d", history = null, chart = null, latest = null, reqSeq = 0;
+const $ = id => document.getElementById(id);
+const fmtTime = t => t ? new Date(t).toLocaleString() : "–";
+
+function cls(m) {
+  if (!m || m.ok_min == null) return "";
+  return m.value < m.ok_min || m.value > m.ok_max ? "warn" : "ok";
+}
+function renderCards() {
+  $("cards").innerHTML = Object.entries(METRICS).map(([k, d]) => {
+    const m = latest?.metrics?.[k];
+    const v = m ? m.value.toFixed(d.dp) : "–";
+    const rng = m?.ok_min != null ? `ideal ${m.ok_min}–${m.ok_max} ${d.unit}` : "";
+    return `<div class="card ${k === metric ? "sel" : ""}" data-k="${k}" role="button" tabindex="0">
+      <div class="label">${d.label}</div>
+      <div class="value ${cls(m)}">${v}<span class="unit">${d.unit}</span></div>
+      <div class="range">${rng}${m?.trend && m.trend !== "undefined" ? " · " + m.trend : ""}</div></div>`;
+  }).join("");
+  document.querySelectorAll(".card").forEach(el => el.onclick = () => { metric = el.dataset.k; renderCards(); renderChart(); });
+}
+async function loadLatest() {
+  try {
+    const r = await fetch("/api/latest"); if (!r.ok) throw new Error((await r.json()).detail || r.status);
+    latest = await r.json();
+    $("title").textContent = latest.pool_name || "Pool";
+    $("updated").textContent = "Last measurement " + fmtTime(latest.last_measure);
+    const d = latest.device || {};
+    $("badges").innerHTML = [d.service_plan && `plan: ${d.service_plan}`, d.via_extender && "via Blue Extender",
+      d.battery_low ? `<b class="bad">battery low</b>` : "battery ok", d.sleep_state && d.sleep_state]
+      .filter(Boolean).map(x => `<span>${x}</span>`).join("");
+    renderCards();
+  } catch (e) { $("updated").innerHTML = `<span class="bad">Could not load latest: ${e.message}</span>`; }
+}
+async function loadHistory() {
+  const seq = ++reqSeq;  // ignore responses superseded by a later click
+  $("status").className = "status"; $("status").textContent = "Loading history…";
+  try {
+    const r = await fetch("/api/history?" + query); if (!r.ok) throw new Error((await r.json()).detail || r.status);
+    const data = await r.json();
+    if (seq !== reqSeq) return;
+    history = data;
+    $("status").textContent = `${history.count} measurements, ${new Date(history.start).toLocaleDateString()} – ${new Date(history.end).toLocaleDateString()}`;
+    renderChart();
+  } catch (e) { if (seq !== reqSeq) return; $("status").className = "status err"; $("status").textContent = "Could not load history: " + e.message; }
+}
+function renderChart() {
+  if (!history) return;
+  const d = METRICS[metric], pts = (history.series[metric] || []).map(([t, v]) => ({x: Date.parse(t), y: v}));
+  const css = getComputedStyle(document.documentElement), accent = css.getPropertyValue("--accent").trim(),
+        line = css.getPropertyValue("--line").trim(), muted = css.getPropertyValue("--muted").trim();
+  const m = latest?.metrics?.[metric], band = m?.ok_min != null ? [m.ok_min, m.ok_max] : null;
+  const ds = [{label: `${d.label} ${d.unit}`, data: pts, borderColor: accent, backgroundColor: accent, pointRadius: pts.length > 200 ? 0 : 2, borderWidth: 1.5, spanGaps: false}];
+  if (band) for (const [i, y] of band.entries())
+    ds.push({label: i ? "ideal max" : "ideal min", data: [{x: Date.parse(history.start), y}, {x: Date.parse(history.end), y}],
+             borderColor: muted, borderDash: [4, 4], pointRadius: 0, borderWidth: 1});
+  chart?.destroy();
+  const xMin = Date.parse(history.start), xMax = Date.parse(history.end);
+  chart = new Chart($("chart"), { type: "line", data: {datasets: ds},
+    options: { maintainAspectRatio: false, animation: false, parsing: false, interaction: {mode: "nearest", intersect: false},
+      plugins: { legend: {labels: {color: muted, boxWidth: 12}} },
+      scales: { x: {type: "time", min: xMin, max: xMax, grid: {color: line}, ticks: {color: muted}}, y: {grid: {color: line}, ticks: {color: muted}} } } });
+}
+$("rangeBtns").innerHTML = RANGES.map(r => `<button data-r="${r}">${r}</button>`).join(" ");
+function markRange(r) { document.querySelectorAll("[data-r]").forEach(b => b.classList.toggle("on", b.dataset.r === r)); }
+document.querySelectorAll("[data-r]").forEach(b => b.onclick = () => { query = "range=" + b.dataset.r; markRange(b.dataset.r); loadHistory(); });
+$("custom").onclick = () => {
+  if (!$("from").value) { $("status").className = "status err"; $("status").textContent = "Pick a start date"; return; }
+  query = `start=${$("from").value}` + ($("to").value ? `&end=${$("to").value}` : ""); markRange(null); loadHistory();
+};
+$("csv").onclick = () => { location.href = "/api/history.csv?" + query; };
+markRange("7d"); loadLatest().then(loadHistory);
+</script>
+</body>
+</html>

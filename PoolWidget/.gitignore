@@ -1,0 +1,6 @@
+build/
+dist/export/
+dist/*.dmg
+*.xcuserstate
+xcuserdata/
+.DS_Store

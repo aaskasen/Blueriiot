@@ -1,0 +1,13 @@
+{
+  "data": [
+    {"blue_device_serial": "SERIAL001", "created": "2026-10-17T17:45:00.000Z", "swimming_pool_id": "00000000-0000-4000-8000-000000000000",
+     "data": {"airtemp": 6.48, "batteryMV": 3488, "conductivity": 18, "fcl_computed": 0.33, "orp": 296, "ph": 7.17, "ph_mv": -6.5, "salinity": 0, "tds": 12, "temperature": 10.2, "windspeed": 5.42}},
+    {"blue_device_serial": "SERIAL001", "created": "2026-10-17T18:57:00.000Z", "swimming_pool_id": "00000000-0000-4000-8000-000000000000",
+     "data": {"batteryMV": 3489, "conductivity": 72, "fcl_computed": 0.322, "orp": 298, "ph": 7.17, "ph_mv": -6.5, "salinity": 0, "tds": 47, "temperature": 10.1}}
+  ],
+  "ranges": {
+    "ph": {"min": 7.2, "max": 7.6, "ideal": 7.3},
+    "orp": {"min": 650, "max": 750, "ideal": 700},
+    "conductivity": {"min": 300, "max": 10000, "ideal": 1500}
+  }
+}

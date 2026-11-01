@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.token
+*token*.json
+cookies*
+*.pem
+*.p12
+
+# Raw (unsanitized) captures — never commit
+captures/raw/
+*.mitm
+*.flow
+*.har
+
+# Local data
+*.sqlite
+*.sqlite3
+*.db
+exports/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/

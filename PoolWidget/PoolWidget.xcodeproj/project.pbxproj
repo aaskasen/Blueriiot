@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 77;
+	objects = {
+		4583FBE5EFF822A19536FAC0 = {isa = PBXBuildFile; fileRef = 1BB62087D0F156584C01DD2E; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		081F1A7804F9A8E7015244ED = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = 4F0948430806FA3CE3912C82; remoteInfo = PoolWidgetExtension; };
+		2834AEE23555A3895545C3C4 = {isa = PBXTargetDependency; target = 4F0948430806FA3CE3912C82; targetProxy = 081F1A7804F9A8E7015244ED; };
+		B8977AD82407C1EF1BF9D53E = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (4583FBE5EFF822A19536FAC0, );
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3F880C400493FDFBB80531C = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoolMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BB62087D0F156584C01DD2E = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PoolWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		969FF417E627E2ED77BFEFBC = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoolMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A30DAD8FB5AE4D60B03A1C1 = {isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (Info.plist, PoolMonitor.entitlements, ); target = F495B914FDA58E598BF95849; };
+		444E54A198F3E9FF25E635AE = {isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (Info.plist, PoolWidgetExtension.entitlements, ); target = 4F0948430806FA3CE3912C82; };
+		9D254543540250A73DA109E9 = {isa = PBXFileSystemSynchronizedRootGroup; path = Shared; sourceTree = "<group>"; };
+		6CB77480E0F0214B7AC1764B = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5A30DAD8FB5AE4D60B03A1C1, ); path = PoolMonitor; sourceTree = "<group>"; };
+		B6396B69580014EA04A0ACFC = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (444E54A198F3E9FF25E635AE, ); path = PoolWidgetExtension; sourceTree = "<group>"; };
+		D878D77CE5E777B198A71DBB = {isa = PBXFileSystemSynchronizedRootGroup; path = PoolMonitorTests; sourceTree = "<group>"; };
+		8D3FC6DB5D0827F168A73277 = {isa = PBXGroup; children = (9D254543540250A73DA109E9, 6CB77480E0F0214B7AC1764B, B6396B69580014EA04A0ACFC, D878D77CE5E777B198A71DBB, 1BADDC1D73C1A20F347483E1, ); sourceTree = "<group>"; };
+		1BADDC1D73C1A20F347483E1 = {isa = PBXGroup; children = (F3F880C400493FDFBB80531C, 1BB62087D0F156584C01DD2E, 969FF417E627E2ED77BFEFBC, ); name = Products; sourceTree = "<group>"; };
+		C0A67626BF6F705A21EFAAD9 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		606AB461C121AA4AC2B6C968 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4FF0E2836F572E9833077A2 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52DC3FB40FF80DAFE30E1D5D = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AD8109E252BD6E12E11F03A = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E50B0179ADEDABA37C4AE3A = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5664B1E6AB1C99CF428F5C = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2800747D447CC1CE91C80D2 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC0A271443D29FD72D6F98AD = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F495B914FDA58E598BF95849 /* PoolMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0E30E3BC1CB0EF655B069B9;
+			buildPhases = (C0A67626BF6F705A21EFAAD9, B4FF0E2836F572E9833077A2, 606AB461C121AA4AC2B6C968, B8977AD82407C1EF1BF9D53E);
+			buildRules = ();
+			dependencies = (2834AEE23555A3895545C3C4, );
+			fileSystemSynchronizedGroups = (9D254543540250A73DA109E9, 6CB77480E0F0214B7AC1764B);
+			name = PoolMonitor;
+			productName = PoolMonitor;
+			productReference = F3F880C400493FDFBB80531C;
+			productType = "com.apple.product-type.application";
+		};
+		4F0948430806FA3CE3912C82 /* PoolWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 574B8A03A226BC6038A88EC0;
+			buildPhases = (52DC3FB40FF80DAFE30E1D5D, 6E50B0179ADEDABA37C4AE3A, 7AD8109E252BD6E12E11F03A);
+			buildRules = ();
+			dependencies = ();
+			fileSystemSynchronizedGroups = (9D254543540250A73DA109E9, B6396B69580014EA04A0ACFC);
+			name = PoolWidgetExtension;
+			productName = PoolWidgetExtension;
+			productReference = 1BB62087D0F156584C01DD2E;
+			productType = "com.apple.product-type.app-extension";
+		};
+		40B250BD2093AC8286CCE7FB /* PoolMonitorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 249128E360A7B4F07EB16A60;
+			buildPhases = (3F5664B1E6AB1C99CF428F5C, EC0A271443D29FD72D6F98AD, B2800747D447CC1CE91C80D2);
+			buildRules = ();
+			dependencies = ();
+			fileSystemSynchronizedGroups = (9D254543540250A73DA109E9, D878D77CE5E777B198A71DBB);
+			name = PoolMonitorTests;
+			productName = PoolMonitorTests;
+			productReference = 969FF417E627E2ED77BFEFBC;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+			};
+			buildConfigurationList = AD88CB0D87D6B333931BA5EB;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base, );
+			mainGroup = 8D3FC6DB5D0827F168A73277;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1BADDC1D73C1A20F347483E1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (F495B914FDA58E598BF95849, 4F0948430806FA3CE3912C82, 40B250BD2093AC8286CCE7FB, );
+		};
+		34C4193929ED6345A39CFEFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4JAWF8AN8G;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				MARKETING_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Debug;
+		};
+		5AB67FFA503C3D3FFD914471 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4JAWF8AN8G;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				MARKETING_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		109721CBC11E700D14AFB85D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = PoolMonitor/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pool Monitor";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				CODE_SIGN_ENTITLEMENTS = PoolMonitor/PoolMonitor.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		C8945872FF001E7274512289 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = PoolMonitor/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pool Monitor";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				CODE_SIGN_ENTITLEMENTS = PoolMonitor/PoolMonitor.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+		1E6E3468744DBD68B5F56155 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitor.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = PoolWidgetExtension/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pool Status";
+				CODE_SIGN_ENTITLEMENTS = PoolWidgetExtension/PoolWidgetExtension.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks", "@executable_path/../../../../Frameworks");
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		10EDCF3719F34964ED9DE840 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitor.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = PoolWidgetExtension/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pool Status";
+				CODE_SIGN_ENTITLEMENTS = PoolWidgetExtension/PoolWidgetExtension.entitlements;
+				ENABLE_HARDENED_RUNTIME = YES;
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks", "@executable_path/../../../../Frameworks");
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+		CD45E107C78BF0A7805A74AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				GENERATE_INFOPLIST_FILE = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		E0B5335D1CEC8CEE779ACE10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.askasen.PoolMonitorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				GENERATE_INFOPLIST_FILE = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+		AD88CB0D87D6B333931BA5EB = {
+			isa = XCConfigurationList;
+			buildConfigurations = (34C4193929ED6345A39CFEFC, 5AB67FFA503C3D3FFD914471, );
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0E30E3BC1CB0EF655B069B9 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (109721CBC11E700D14AFB85D, C8945872FF001E7274512289, );
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		574B8A03A226BC6038A88EC0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (1E6E3468744DBD68B5F56155, 10EDCF3719F34964ED9DE840, );
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		249128E360A7B4F07EB16A60 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (CD45E107C78BF0A7805A74AA, E0B5335D1CEC8CEE779ACE10, );
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}

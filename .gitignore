@@ -1,0 +1,28 @@
+# Secrets & local account data — never publish
+.env
+.env.*
+!.env.example
+blueriiot-re/captures/raw/
+blueriiot-re/captures/sanitized/
+!blueriiot-re/captures/sanitized/history_probe.json
+blueriiot-re/data/
+blueriiot-re/exports/
+*.sqlite
+*.sqlite3
+*.p8
+*.mobileprovision
+
+# Build output
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+PoolWidget/build/
+PoolWidget/dist/export/
+PoolWidget/dist/*.dmg
+xcuserdata/
+*.xcuserstate
+
+# Local tooling
+.claude/
+.DS_Store
